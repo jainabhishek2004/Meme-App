@@ -1,0 +1,24 @@
+{
+  "name": "meme-app",
+  "version": "1.0.0",
+  "description": "a meme app",
+  "keywords": [
+    "javascipt",
+    "backend"
+  ],
+  "homepage": "https://github.com/jainabhishek2004/Meme-App#readme",
+  "bugs": {
+    "url": "https://github.com/jainabhishek2004/Meme-App/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jainabhishek2004/Meme-App.git"
+  },
+  "license": "ISC",
+  "author": "Abhishek Jain",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
