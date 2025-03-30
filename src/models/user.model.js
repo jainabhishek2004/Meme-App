@@ -23,6 +23,7 @@ const userSchema = new Schema({
 
     },
     badmashiScore: { type: Number, default: 0 }, 
+    totalUpvotes: { type: Number, default: 0 }
   
 },
 {
