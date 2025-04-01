@@ -26,6 +26,13 @@ const storySchema = new Schema({
         default:0,
         required:true
     },
+    remark : {
+        type :String,
+        required : true,
+        trim : true,
+        lowercase : true,
+
+    },
     author :{
         
             type: Schema.Types.ObjectId,
