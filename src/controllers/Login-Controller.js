@@ -20,7 +20,7 @@ const RegisterUser = async (req, res) => {
       return res.status(500).json({ error: "User not created" });
     }
 
-    // Remove password before sending response
+    
     const userWithoutPassword = await User.findById(newUser._id).select("-password");
 
     res.status(201).json({ user: userWithoutPassword });
