@@ -34,6 +34,8 @@ const getBadmashiScore = async (title, story) => {
 
         // Clean up response (remove markdown if any)
         aiText = aiText.replace(/```json|```/g, "").trim();
+        console.log(aiText);
+        
 
         // Parse JSON result
         return JSON.parse(aiText);
