@@ -1,6 +1,6 @@
-import { Story } from "../models/Story.model";
-import { getBadmashiScore } from "./badmashi-score";
-import { User } from "../models/user.model";
+import { Story } from "../models/Story.model.js";
+import { getBadmashiScore } from "./badmashi-score.js";
+import { User } from "../models/user.model.js";
 
 const submitstory = async(req,res) => {
     try{
@@ -11,18 +11,20 @@ const submitstory = async(req,res) => {
         if(!story) {
             return res.status(400).json({error : " Story is Required"})
         }
+        console.log(UserId);
          
         const badmashiscore = await getBadmashiScore (title,story);
         const newstory = await Story.create({
             title,
             story,
-            aiscore : badmashiscore.aiscore,
+            aiscore : badmashiscore.score,
             remark : badmashiscore.remark,
-            author : user._id
+            author : UserId
     
     
         })
-        res.status(201).json({ message: "Story submitted successfully!", story: newStory });
+        console.log(badmashiscore)
+        res.status(201).json({ message: "Story submitted successfully!", story: newstory });
     } catch (error) {
         console.error("Error submitting story:", error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -31,6 +33,8 @@ const submitstory = async(req,res) => {
    
    
 }
+
+export{submitstory};
 
 
 

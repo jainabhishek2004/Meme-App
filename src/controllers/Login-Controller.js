@@ -30,4 +30,4 @@ const RegisterUser = async (req, res) => {
   }
 };
 
-export default RegisterUser;
+export {RegisterUser};

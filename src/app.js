@@ -15,6 +15,7 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 import router from "./Routes/gemini-route.js";
+
 app.use("/api", router);
 
 export{app}
