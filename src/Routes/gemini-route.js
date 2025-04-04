@@ -5,6 +5,8 @@ import { submitstory } from "../controllers/Story-Submit.js";
 import { issueCertificate } from "../controllers/issue-certificate.js";
 import { topUsers } from "../controllers/topusers.js";
 import { LoginUser } from "../controllers/Login-Controller.js";
+import { incrementUpvote } from "../controllers/Upvote-Controller.js";
+import { decrementupvote } from "../controllers/Upvote-Controller.js";
 
 const router = Router();
 router.get("/test", (req, res) => {
@@ -19,5 +21,7 @@ router.route("/Submit-story").post(submitstory);
 router.route("/certificate").post(issueCertificate);
 router.route("/leaderboard").post(topUsers);
 router.route("/Login").post(LoginUser);
+router.route("/upvote").patch(incrementUpvote);
+router.route("/decrementupvote").patch(decrementupvote);
 
 export default router;

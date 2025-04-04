@@ -23,7 +23,14 @@ const submitstory = async(req,res) => {
     
     
         })
-       // const stories = await User.find({author : UserId});
+       const user = await User.findById(UserId);
+       if(!user){   
+        return res.status(400).json({error : "User not found"})
+       }
+         user.badmashiScore = (user.badmashiScore + badmashiscore.score)/2;
+         await user.save();
+        console.log(user);
+      
 
         console.log(badmashiscore)
         res.status(201).json({ message: "Story submitted successfully!", story: newstory });
