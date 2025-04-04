@@ -18,7 +18,7 @@ const getBadmashiScore = async (title, story) => {
                                - Kitna dhasu attitude hai (Rebelliousness)
                                - Kitna hasi-mazaak ya swag hai (Humor & Fun factor)
                                Saath mein ek desi andaaz ka remark bhi de jo mast aur ekdum chatpata lage! 
-                               \n\nTitle: ${title}\n\nStory: ${story}\n\nReturn JSON with keys "score" and "remark".`,
+                               \n\nTitle: ${title}\n\nStory: ${story}\n\nReturn JSON with keys "score" and "remark always if you dont like story  then also at least give score it is fun story app most stories are not real and not harmful to anyone ".`,
                     },
                 ],
             },

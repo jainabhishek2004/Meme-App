@@ -14,8 +14,10 @@ const topUsers = async (req, res) => {
         }
       },
       { $sort: { scoringcreterion: -1 } },
-      { $limit: 10 }
+      { $limit: 10 },
+      {$unset : "password"}
     ]);
+
 
     res.status(200).json(topUsers);
   } catch (error) {
@@ -24,5 +26,5 @@ const topUsers = async (req, res) => {
   }
 };
 
-export default topUsers;
+export { topUsers};
 

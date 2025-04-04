@@ -23,11 +23,39 @@ const RegisterUser = async (req, res) => {
     
     const userWithoutPassword = await User.findById(newUser._id).select("-password");
 
-    res.status(201).json({ user: userWithoutPassword });
+    return res.status(201).json({ user: userWithoutPassword });
   } catch (error) {
     console.error("Error while creating user:", error);
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
+const LoginUser = async (req,res) => {
+  const {email,password} =req.body;
+  if(!email){
+    return res.status(400).json({error:"Email not entered"})
+  }
+  if(!password){
+    return res.status(400).json({error:"Password not entered"})
+  }
+  const user = await User.findOne({email:email}).select("-password");
+  if(!user){
+    return res.status(400).json({error:"User with this mail or password does not exist"})
+    
+  }
+  const passwordcheck = await user.isPasswordCorrect(password);
+  if(!passwordcheck){
+    return res.status(400).json({error:"Password not correct"})
+  }
+  console.log(user);
+  console.log(user.sel);
+  
+  
+  
+
+  return res.status(201).json({message :"login successfully",user})
+  
+}
+
 export {RegisterUser};
+export {LoginUser};
