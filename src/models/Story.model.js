@@ -39,7 +39,13 @@ const storySchema = new Schema({
             ref: "User",
             required:true
         
-    }
+    },
+    UpvotedBy : [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],  
 
 },
 {

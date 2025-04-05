@@ -30,4 +30,4 @@ const TrendingStories = async (req, res) => {
   }
 };
 
-export default TrendingStories;
+export {TrendingStories};

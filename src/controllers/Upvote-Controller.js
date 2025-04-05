@@ -4,6 +4,10 @@ import { User } from "../models/user.model.js";// Adjust the import path as nece
 const incrementUpvote = async (req, res) => {
     try {
         const StoryId = req.query.StoryId 
+        const   UserId = req.query.UserId; 
+        if (!UserId) {
+            return res.status(400).json({ error: "User ID is required" });
+        }
 
         if (!StoryId) {
             return res.status(400).json({ error: "Story ID is required" });
@@ -13,6 +17,9 @@ const incrementUpvote = async (req, res) => {
         if (!story) {
             return res.status(404).json({ error: "Story not found" });
         }
+        if(story.UpvotedBy.includes(UserId)) {
+            return res.status(400).json({ error: "User has already upvoted this story" })
+        }
 
      
         const updatedStory = await Story.findByIdAndUpdate(
@@ -20,10 +27,17 @@ const incrementUpvote = async (req, res) => {
             { upvotes: story.upvotes + 1 }, 
             { new: true } 
         );
+        if (!updatedStory) {
+            return res.status(404).json({ error: "Failed to update story" });
+        }
+       
+        updatedStory.UpvotedBy.push(UserId);
+        await updatedStory.save(); 
         const user = await User.findById(story.author);
         if (!user) {
-            return res.status(404).json({ error: "User not found" });
+            return res.status(404).json({ error: "Author not found" });
         }
+      
         user.totalUpvotes = user.totalUpvotes + 1;
         await user.save(); // Save the updated user document
 
@@ -46,9 +60,10 @@ const decrementupvote = async (req,res) => {
         return res.status(400).json({error :" Story not Found"})
     
     }
-    if(story.upvotes <= 0) {
+    if(story.upvotes<= 0) {
         return res.status(400).json({error :" Upvotes are already zero"})
     }
+   
     const updatedStory = await Story.findByIdAndUpdate(StoryId,
         {upvotes: story.upvotes -1},
         {
@@ -59,6 +74,9 @@ const decrementupvote = async (req,res) => {
     const user = await User.findById(story.author);
         if (!user) {
             return res.status(404).json({ error: "User not found" });
+        }
+        if(user.totalUpvotes <= 0) {
+            return res.status(400).json({error :" Upvotes are already zero"})
         }
         user.totalUpvotes = user.totalUpvotes - 1;
         await user.save(); 

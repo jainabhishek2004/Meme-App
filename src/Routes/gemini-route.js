@@ -7,6 +7,8 @@ import { topUsers } from "../controllers/topusers.js";
 import { LoginUser } from "../controllers/Login-Controller.js";
 import { incrementUpvote } from "../controllers/Upvote-Controller.js";
 import { decrementupvote } from "../controllers/Upvote-Controller.js";
+import { getstory } from "../controllers/getStory.js";
+import { getuserprofile } from "../controllers/getuserprofile.js";
 
 const router = Router();
 router.get("/test", (req, res) => {
@@ -23,5 +25,7 @@ router.route("/leaderboard").post(topUsers);
 router.route("/Login").post(LoginUser);
 router.route("/upvote").patch(incrementUpvote);
 router.route("/decrementupvote").patch(decrementupvote);
+router.route("/getstory").get(getstory);
+router.route("/getuser").get(getuserprofile);
 
 export default router;
