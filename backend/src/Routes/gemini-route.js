@@ -9,6 +9,7 @@ import { incrementUpvote } from "../controllers/Upvote-Controller.js";
 import { decrementupvote } from "../controllers/Upvote-Controller.js";
 import { getstory } from "../controllers/getStory.js";
 import { getuserprofile } from "../controllers/getuserprofile.js";
+import { yt } from "../controllers/test.js";
 
 const router = Router();
 router.get("/test", (req, res) => {
@@ -27,5 +28,6 @@ router.route("/upvote").patch(incrementUpvote);
 router.route("/decrementupvote").patch(decrementupvote);
 router.route("/getstory").get(getstory);
 router.route("/getuser").get(getuserprofile);
+router.route("/teststory").get(yt);
 
 export default router;
